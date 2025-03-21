@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
-import { CheckCircle2, Check } from "lucide-react";
+import { CheckCircle2, Check } from "lucide-react"; //Check is not used after changes
+import { BadgeCheck } from "lucide-react"; // Added import for BadgeCheck
 import Layout from "@/components/Layout";
 import PageNavigation from "@/components/PageNavigation";
 import { JobApplicationFormValues, jobApplicationFormSchema } from "@/lib/validation";
