@@ -10,6 +10,7 @@ import ContactPage from "./pages/ContactPage";
 import FreelancePage from "./pages/FreelancePage";
 import CareersPage from "./pages/CareersPage";
 import NotFound from "@/pages/not-found";
+import Chat from './components/Chat'; // Added Chat component import
 
 function AppRoutes() {
   return (
@@ -31,6 +32,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <AppRoutes />
+        <Chat /> {/* Added Chat component */}
       </Router>
       <Toaster />
     </QueryClientProvider>
@@ -38,3 +40,14 @@ function App() {
 }
 
 export default App;
+
+// Placeholder Chat component -  replace with actual WebSocket implementation
+const Chat = () => {
+  return (
+    <div>
+      <h1>Simple Chat</h1>
+      {/* Replace this with actual chat UI and logic */}
+      <p>This is a placeholder for a real-time chat.</p>
+    </div>
+  );
+};

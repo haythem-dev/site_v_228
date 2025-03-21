@@ -1,5 +1,7 @@
 import express, { type Express, Request, Response } from "express";
 import type { Server } from "http";
+import { WebSocket, WebSocketServer } from 'ws';
+import { chatMessageSchema } from "@shared/schema";
 import { createServer } from "http";
 import { storage } from "./storage";
 import { contactFormSchema, freelanceFormSchema, jobApplicationFormSchema } from "@shared/schema";
@@ -193,5 +195,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   const httpServer = createServer(app);
+  
+  const wss = new WebSocketServer({ server: httpServer, path: '/ws' });
+  
+  wss.on('connection', (ws: WebSocket) => {
+    ws.on('message', (data: string) => {
+      try {
+        const message = chatMessageSchema.parse(JSON.parse(data));
+        wss.clients.forEach(client => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify(message));
+          }
+        });
+      } catch (error) {
+        console.error('Invalid message:', error);
+      }
+    });
+  });
+
   return httpServer;
 }

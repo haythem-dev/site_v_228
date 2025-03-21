@@ -145,3 +145,11 @@ export const insertJobApplicationSchema = createInsertSchema(jobApplications).pi
 
 export type InsertJobApplication = z.infer<typeof insertJobApplicationSchema>;
 export type JobApplication = typeof jobApplications.$inferSelect;
+export const chatMessageSchema = z.object({
+  id: z.string().optional(),
+  sender: z.string(),
+  message: z.string().min(1),
+  timestamp: z.string().optional(),
+});
+
+export type ChatMessage = z.infer<typeof chatMessageSchema>;
