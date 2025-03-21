@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/Layout";
 import PageNavigation from "@/components/PageNavigation";
 import { JobApplicationFormValues, jobApplicationFormSchema } from "@/lib/validation";
