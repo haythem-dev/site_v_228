@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
-import { Check } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageNavigation from "@/components/PageNavigation";
 import { JobApplicationFormValues, jobApplicationFormSchema } from "@/lib/validation";
@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertCircle, Briefcase, CheckCircle2, Upload } from "lucide-react";
+import { AlertCircle, Briefcase,  Upload } from "lucide-react";
 import { z } from "zod";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -153,22 +153,22 @@ export default function CareersPage() {
     }
   ];
 
-  const benefits = [
+  const benefitsList = [
     {
       title: "Health & Wellness",
-      perks: ["Comprehensive health insurance", "Mental health support", "Wellness programs"]
+      items: ["Comprehensive health insurance", "Mental health support", "Wellness programs"]
     },
     {
       title: "Work-Life Balance",
-      perks: ["Flexible working hours", "Remote work options", "Paid time off"]
+      items: ["Flexible working hours", "Remote work options", "Paid time off"]
     },
     {
       title: "Growth & Development",
-      perks: ["Professional training", "Conference allowance", "Career mentorship"]
+      items: ["Professional training", "Conference allowance", "Career mentorship"]
     },
     {
       title: "Financial Benefits",
-      perks: ["Competitive salary", "Performance bonuses", "401(k) matching"]
+      items: ["Competitive salary", "Performance bonuses", "401(k) matching"]
     }
   ];
 
@@ -318,13 +318,13 @@ export default function CareersPage() {
   return (
     <Layout>
       <PageNavigation links={navigationLinks} activeSection={activeSection} />
-      
-      <section id="hiring-process" className="py-12 bg-gray-50">
+
+      <section id="hiring-process" className="bg-gray-50 py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Hiring Process</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Hiring Process</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {hiringSteps.map((step, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="text-primary font-bold text-xl mb-2">Step {index + 1}</div>
                 <h3 className="font-semibold mb-2">{step.title}</h3>
                 <p className="text-gray-600 text-sm">{step.description}</p>
@@ -334,18 +334,18 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section id="benefits" className="py-12">
+      <section id="benefits" className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Benefits & Perks</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {benefits.map((category, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold text-center mb-12">Benefits & Perks</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {benefitsList.map((category, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-bold mb-4">{category.title}</h3>
-                <ul className="space-y-2">
-                  {category.perks.map((perk, perkIndex) => (
-                    <li key={perkIndex} className="flex items-center gap-2">
-                      <Check className="h-5 w-5 text-primary" />
-                      <span>{perk}</span>
+                <ul className="space-y-3">
+                  {category.items.map((item, itemIndex) => (
+                    <li key={itemIndex} className="flex items-center gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -354,6 +354,7 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
+
       <div className="container py-12 space-y-10">
         <div className="space-y-5 text-center">
           <h1 className="text-4xl font-bold tracking-tight">Join Our Team</h1>
