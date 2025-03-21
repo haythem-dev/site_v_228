@@ -5,6 +5,7 @@ import { storage } from "./storage";
 import { contactFormSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
+import { sendContactEmail } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission route
@@ -18,6 +19,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ...validatedData,
         createdAt: new Date().toISOString(),
       });
+      
+      // Send email notification
+      try {
+        await sendContactEmail(newMessage);
+        console.log("Email notification sent successfully");
+      } catch (emailError) {
+        console.error("Failed to send email notification:", emailError);
+        // We don't return an error to the client if email fails
+        // as the message was still saved in the database
+      }
       
       // Return success response
       return res.status(201).json({
