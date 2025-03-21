@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
+import { Check } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageNavigation from "@/components/PageNavigation";
 import { JobApplicationFormValues, jobApplicationFormSchema } from "@/lib/validation";
