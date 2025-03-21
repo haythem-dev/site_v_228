@@ -1,5 +1,6 @@
 import { Monitor, ShieldCheck, Cloud, Building, Network, Lightbulb } from "lucide-react";
 import { Divider } from "./ui/divider";
+import { Link } from "wouter";
 
 const services = [
   {
@@ -72,7 +73,7 @@ export default function ServicesSection() {
                 <p className="text-gray-500 mb-4">
                   {service.description}
                 </p>
-                <a href="#contact" className="text-primary font-medium hover:underline">Learn more →</a>
+                <Link href="/contact" className="text-primary font-medium hover:underline">Learn more →</Link>
               </div>
             </div>
           ))}

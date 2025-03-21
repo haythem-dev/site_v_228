@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -39,19 +40,19 @@ export default function Footer() {
   ];
 
   const quickLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Our Team", href: "#team" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Our Team", href: "/team" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const services = [
-    { label: "Software Development", href: "#services" },
-    { label: "Cybersecurity", href: "#services" },
-    { label: "Cloud Services", href: "#services" },
-    { label: "IT Consulting", href: "#services" },
-    { label: "Network Infrastructure", href: "#services" },
+    { label: "Software Development", href: "/services" },
+    { label: "Cybersecurity", href: "/services" },
+    { label: "Cloud Services", href: "/services" },
+    { label: "IT Consulting", href: "/services" },
+    { label: "Network Infrastructure", href: "/services" },
   ];
 
   const contactInfo = [
@@ -97,12 +98,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
+                  <Link 
                     href={link.href} 
                     className="text-gray-300 hover:text-primary transition-all"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -113,12 +114,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index}>
-                  <a 
+                  <Link 
                     href={service.href} 
                     className="text-gray-300 hover:text-primary transition-all"
                   >
                     {service.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
