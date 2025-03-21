@@ -15,13 +15,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       // Validate request body
       const validatedData = contactFormSchema.parse(req.body);
-      
+
       // Create contact message
       const newMessage = await storage.createContactMessage({
         ...validatedData,
         createdAt: new Date().toISOString(),
       });
-      
+
       // Send email notification
       try {
         await sendContactEmail(newMessage);
@@ -31,7 +31,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // We don't return an error to the client if email fails
         // as the message was still saved in the database
       }
-      
+
       // Return success response
       return res.status(201).json({
         message: "Contact message submitted successfully",
@@ -46,7 +46,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: validationError.toString(),
         });
       }
-      
+
       // Handle other errors
       console.error("Error submitting contact message:", error);
       return res.status(500).json({
@@ -73,13 +73,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       // Validate request body
       const validatedData = freelanceFormSchema.parse(req.body);
-      
+
       // Create freelance application
       const newApplication = await storage.createFreelanceApplication({
         ...validatedData,
         createdAt: new Date().toISOString(),
       });
-      
+
       // Send email notification (similar to contact form)
       try {
         // We'll send an email notification later
@@ -87,7 +87,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } catch (emailError) {
         console.error("Failed to send email notification:", emailError);
       }
-      
+
       // Return success response
       return res.status(201).json({
         message: "Freelance application submitted successfully",
@@ -102,7 +102,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: validationError.toString(),
         });
       }
-      
+
       // Handle other errors
       console.error("Error submitting freelance application:", error);
       return res.status(500).json({
@@ -129,7 +129,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       // Validate request body
       const validatedData = jobApplicationFormSchema.parse(req.body);
-      
+
       // Create job application with file data
       const newApplication = await storage.createJobApplication({
         name: validatedData.name,
@@ -143,7 +143,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: validatedData.message || null,
         createdAt: new Date().toISOString(),
       });
-      
+
       // Send email notification (similar to contact form)
       try {
         // We'll send an email notification later
@@ -151,7 +151,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } catch (emailError) {
         console.error("Failed to send email notification:", emailError);
       }
-      
+
       // Return success response
       return res.status(201).json({
         message: "Job application submitted successfully",
@@ -166,7 +166,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: validationError.toString(),
         });
       }
-      
+
       // Handle other errors
       console.error("Error submitting job application:", error);
       return res.status(500).json({
@@ -195,23 +195,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   const httpServer = createServer(app);
-  
+
   const wss = new WebSocketServer({ server: httpServer, path: '/ws' });
-  
-  wss.on('connection', (ws: WebSocket) => {
-    ws.on('message', (data: string) => {
+
+  wss.on('connection', ws => {
+    ws.on('message', message => {
       try {
-        const message = chatMessageSchema.parse(JSON.parse(data));
+        const parsedMessage = JSON.parse(message.toString());
+        // Validate message using chatMessageSchema (assuming it's defined elsewhere)
+        const validatedMessage = chatMessageSchema.parse(parsedMessage);
         wss.clients.forEach(client => {
-          if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify(message));
+          if (client !== ws && client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify(validatedMessage));
           }
         });
       } catch (error) {
-        console.error('Invalid message:', error);
+        console.error("Error processing WebSocket message:", error);
       }
     });
   });
+
 
   return httpServer;
 }
