@@ -37,6 +37,7 @@ const navigationLinks = [
   { id: "intro", label: "Overview" },
   { id: "benefits", label: "Benefits" },
   { id: "application", label: "Application Form" },
+  { id: "propose-work", label: "Propose Work" },
   { id: "faq", label: "FAQ" },
 ];
 
@@ -116,6 +117,42 @@ export default function FreelancePage() {
   };
 
   const applicationType = form.watch("applicationType");
+
+  const proposeWorkSchema = z.object({
+    companyName: z.string().min(2, { message: "Company name must be at least 2 characters" }),
+    contactName: z.string().min(2, { message: "Contact name must be at least 2 characters" }),
+    email: z.string().email({ message: "Please enter a valid email address" }),
+    projectDescription: z.string().min(10, { message: "Project description must be at least 10 characters" }),
+  });
+
+  const proposeForm = useForm({
+    resolver: zodResolver(proposeWorkSchema),
+    defaultValues: {
+      companyName: "",
+      contactName: "",
+      email: "",
+      projectDescription: "",
+    },
+  });
+
+  const onProposeSubmit = async (data) => {
+    setIsSubmitting(true);
+    try {
+      await apiRequest("/api/propose-work", { method: "POST", body: data });
+      toast({
+        title: "Success",
+        description: "Your project proposal has been submitted successfully.",
+      });
+      proposeForm.reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit project proposal. Please try again.",
+        variant: "destructive",
+      });
+    }
+    setIsSubmitting(false);
+  };
 
   return (
     <Layout>
@@ -466,6 +503,86 @@ export default function FreelancePage() {
               </Card>
             </section>
           </div>
+        </section>
+
+        <section id="propose-work">
+          <Card>
+            <CardHeader>
+              <CardTitle>Propose Work</CardTitle>
+              <CardDescription>
+                Have a project for us? Tell us about your requirements
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...proposeForm}>
+                <form onSubmit={proposeForm.handleSubmit(onProposeSubmit)} className="space-y-6">
+                  <FormField
+                    control={proposeForm.control}
+                    name="companyName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Company Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your company name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={proposeForm.control}
+                    name="contactName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Contact Person</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={proposeForm.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input placeholder="your@email.com" type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={proposeForm.control}
+                    name="projectDescription"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Project Description</FormLabel>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="Describe your project requirements, timeline, and budget expectations"
+                            className="min-h-[120px]"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button type="submit" className="w-full">
+                    Submit Proposal
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
         </section>
         <section id="faq">
           <h2 className="text-3xl font-bold text-center">Frequently Asked Questions</h2>
