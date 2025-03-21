@@ -530,3 +530,67 @@ export default function CareersPage() {
     </div>
   );
 }
+import PageNavigation from '@/components/PageNavigation';
+import { useEffect, useState } from 'react';
+import Layout from '@/components/Layout';
+
+const navigationLinks = [
+  { id: "positions", label: "Open Positions" },
+  { id: "culture", label: "Our Culture" },
+  { id: "process", label: "Hiring Process" },
+  { id: "perks", label: "Benefits & Perks" },
+];
+
+function useActiveSection(sections: string[]) {
+  const [activeSection, setActiveSection] = useState<string>(sections[0]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [sections]);
+
+  return activeSection;
+}
+
+export default function CareersPage() {
+  const activeSection = useActiveSection(navigationLinks.map(link => link.id));
+
+  return (
+    <Layout>
+      <PageNavigation links={navigationLinks} activeSection={activeSection} />
+      <div className="container py-8">
+        <section id="positions" className="min-h-screen">
+          <h2 className="text-3xl font-bold mb-6">Open Positions</h2>
+          {/* Add content here */}
+        </section>
+        <section id="culture" className="min-h-screen">
+          <h2 className="text-3xl font-bold mb-6">Our Culture</h2>
+          {/* Add content here */}
+        </section>
+        <section id="process" className="min-h-screen">
+          <h2 className="text-3xl font-bold mb-6">Hiring Process</h2>
+          {/* Add content here */}
+        </section>
+        <section id="perks" className="min-h-screen">
+          <h2 className="text-3xl font-bold mb-6">Benefits & Perks</h2>
+          {/* Add content here */}
+        </section>
+      </div>
+    </Layout>
+  );
+}
