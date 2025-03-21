@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="pt-24 pb-12 md:pt-32 md:pb-24 bg-gradient-to-br from-gray-100 to-white">
+    <section className="pt-24 pb-12 md:pt-32 md:pb-24 bg-gradient-to-br from-gray-100 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-10 md:mb-0">
@@ -17,14 +18,14 @@ export default function HeroSection() {
                 size="lg"
                 asChild
               >
-                <a href="#services">Our Services</a>
+                <Link href="/services">Our Services</Link>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 asChild
               >
-                <a href="#contact">Contact Us</a>
+                <Link href="/contact">Contact Us</Link>
               </Button>
             </div>
           </div>

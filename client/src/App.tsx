@@ -3,12 +3,20 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { Route, Router, Switch } from "wouter";
 import Home from "./pages/Home";
+import AboutPage from "./pages/AboutPage";
+import ServicesPage from "./pages/ServicesPage";
+import TeamPage from "./pages/TeamPage";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "@/pages/not-found";
 
 function AppRoutes() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/services" component={ServicesPage} />
+      <Route path="/team" component={TeamPage} />
+      <Route path="/contact" component={ContactPage} />
       <Route component={NotFound} />
     </Switch>
   );
