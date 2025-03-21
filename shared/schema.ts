@@ -68,13 +68,13 @@ export const freelanceFormSchema = z.object({
   specialty: z.string().min(2, { message: "Specialty must be at least 2 characters" }),
   experienceYears: z.string().min(1, { message: "Years of experience is required" }),
   skills: z.string().min(5, { message: "Skills must be at least 5 characters" }),
-  portfolioUrl: z.string().url({ message: "Please enter a valid URL" }).optional().or(z.literal('')),
-  linkedinUrl: z.string().url({ message: "Please enter a valid URL" }).optional().or(z.literal('')),
+  portfolioUrl: z.string().url({ message: "Please enter a valid URL" }).optional().nullable().or(z.literal('')),
+  linkedinUrl: z.string().url({ message: "Please enter a valid URL" }).optional().nullable().or(z.literal('')),
   message: z.string().min(10, { message: "Message must be at least 10 characters" }),
   applicationType: z.enum(["individual", "agency"], { 
     message: "Application type must be either 'individual' or 'agency'" 
   }),
-  companyName: z.string().optional(),
+  companyName: z.string().optional().nullable(),
 });
 
 export const insertFreelanceApplicationSchema = createInsertSchema(freelanceApplications).pick({
@@ -125,8 +125,8 @@ export const jobApplicationFormSchema = z.object({
     name: z.string(),
     content: z.string(), // Base64 encoded content
     size: z.number().max(maxFileSize, { message: "Cover letter file must be less than 5MB" })
-  }).optional(),
-  message: z.string().optional(),
+  }).optional().nullable(),
+  message: z.string().optional().nullable(),
 });
 
 export const insertJobApplicationSchema = createInsertSchema(jobApplications).pick({
