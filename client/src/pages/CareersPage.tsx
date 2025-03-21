@@ -129,6 +129,48 @@ export default function CareersPage() {
   const { toast } = useToast();
   const activeSection = useActiveSection(navigationLinks.map(link => link.id));
 
+  const hiringSteps = [
+    {
+      title: "Application Review",
+      description: "Our team reviews your application, CV, and cover letter"
+    },
+    {
+      title: "Initial Interview",
+      description: "Virtual meeting to discuss your experience and aspirations"
+    },
+    {
+      title: "Technical Assessment",
+      description: "Skills evaluation through practical tasks or coding challenges"
+    },
+    {
+      title: "Final Interview",
+      description: "Meet with the team leaders and discuss potential role"
+    },
+    {
+      title: "Offer & Onboarding",
+      description: "Welcome to the team! Begin your journey with us"
+    }
+  ];
+
+  const benefits = [
+    {
+      title: "Health & Wellness",
+      perks: ["Comprehensive health insurance", "Mental health support", "Wellness programs"]
+    },
+    {
+      title: "Work-Life Balance",
+      perks: ["Flexible working hours", "Remote work options", "Paid time off"]
+    },
+    {
+      title: "Growth & Development",
+      perks: ["Professional training", "Conference allowance", "Career mentorship"]
+    },
+    {
+      title: "Financial Benefits",
+      perks: ["Competitive salary", "Performance bonuses", "401(k) matching"]
+    }
+  ];
+
   const form = useForm<JobApplicationFormValues>({
     resolver: zodResolver(jobApplicationFormSchema),
     defaultValues: {
@@ -275,6 +317,42 @@ export default function CareersPage() {
   return (
     <Layout>
       <PageNavigation links={navigationLinks} activeSection={activeSection} />
+      
+      <section id="hiring-process" className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Our Hiring Process</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {hiringSteps.map((step, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <div className="text-primary font-bold text-xl mb-2">Step {index + 1}</div>
+                <h3 className="font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-600 text-sm">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="benefits" className="py-12">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Benefits & Perks</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {benefits.map((category, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold mb-4">{category.title}</h3>
+                <ul className="space-y-2">
+                  {category.perks.map((perk, perkIndex) => (
+                    <li key={perkIndex} className="flex items-center gap-2">
+                      <Check className="h-5 w-5 text-primary" />
+                      <span>{perk}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <div className="container py-12 space-y-10">
         <div className="space-y-5 text-center">
           <h1 className="text-4xl font-bold tracking-tight">Join Our Team</h1>
