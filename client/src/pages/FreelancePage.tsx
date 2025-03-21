@@ -85,6 +85,7 @@ export default function FreelancePage() {
       message: "",
       applicationType: "individual",
       companyName: "",
+      projectDescription: ""
     },
   });
 
@@ -243,28 +244,46 @@ export default function FreelancePage() {
                         )}
                       />
 
-                      {applicationType === "agency" && (
+                      {form.watch("applicationType") === "agency" && (
                         <FormField
                           control={form.control}
                           name="companyName"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Company/Agency Name</FormLabel>
+                              <FormLabel>Company Name</FormLabel>
                               <FormControl>
-                                <Input
-                                  placeholder="Your company name"
-                                  {...field}
-                                  value={field.value || ""}
-                                />
+                                <Input {...field} />
                               </FormControl>
-                              <FormDescription>
-                                The name of your company or agency
-                              </FormDescription>
                               <FormMessage />
                             </FormItem>
                           )}
                         />
                       )}
+
+                      <div className="space-y-2">
+                        <h3 className="font-semibold">Project Proposal</h3>
+                        <p className="text-sm text-muted-foreground">
+                          If you have a specific project in mind, please provide details below:
+                        </p>
+                      </div>
+
+                      <FormField
+                        control={form.control}
+                        name="projectDescription"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Project Description</FormLabel>
+                            <FormControl>
+                              <Textarea 
+                                {...field} 
+                                placeholder="Please describe your project requirements, timeline, and budget expectations"
+                                className="min-h-[100px]"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
                       <FormField
                         control={form.control}

@@ -58,6 +58,7 @@ export const freelanceApplications = pgTable("freelance_applications", {
   message: text("message").notNull(),
   applicationType: text("application_type").notNull(), // "individual" or "agency"
   companyName: text("company_name"), // Only for agency applications
+  projectDescription: text("project_description"),
   createdAt: text("created_at").notNull(),
 });
 
@@ -75,6 +76,7 @@ export const freelanceFormSchema = z.object({
     message: "Application type must be either 'individual' or 'agency'" 
   }),
   companyName: z.string().optional().nullable(),
+  projectDescription: z.string().optional().nullable(),
 });
 
 export const insertFreelanceApplicationSchema = createInsertSchema(freelanceApplications).pick({
