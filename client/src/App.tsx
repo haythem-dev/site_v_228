@@ -7,6 +7,8 @@ import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 import ContactPage from "./pages/ContactPage";
+import FreelancePage from "./pages/FreelancePage";
+import CareersPage from "./pages/CareersPage";
 import NotFound from "@/pages/not-found";
 
 function AppRoutes() {
@@ -17,6 +19,8 @@ function AppRoutes() {
       <Route path="/services" component={ServicesPage} />
       <Route path="/team" component={TeamPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/freelance" component={FreelancePage} />
+      <Route path="/careers" component={CareersPage} />
       <Route component={NotFound} />
     </Switch>
   );
