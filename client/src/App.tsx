@@ -40,14 +40,3 @@ function App() {
 }
 
 export default App;
-
-// Placeholder Chat component -  replace with actual WebSocket implementation
-const Chat = () => {
-  return (
-    <div>
-      <h1>Simple Chat</h1>
-      {/* Replace this with actual chat UI and logic */}
-      <p>This is a placeholder for a real-time chat.</p>
-    </div>
-  );
-};
