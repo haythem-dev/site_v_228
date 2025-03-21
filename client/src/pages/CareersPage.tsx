@@ -205,11 +205,16 @@ export default function CareersPage() {
       };
       
       // Submit to API
-      await apiRequest({
-        url: "/api/jobs/apply",
-        method: "POST",
-        body: submissionData,
-      });
+      await apiRequest(
+        "/api/jobs/apply",
+        {
+          method: "POST",
+          body: JSON.stringify(submissionData),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
       
       toast({
         title: "Application Submitted",
