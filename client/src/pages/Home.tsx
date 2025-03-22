@@ -5,7 +5,7 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { Divider } from "@/components/ui/divider";
 
-export function Home() {
+export default function Home() {
   return (
     <Layout>
       <section className="min-h-screen bg-background">
