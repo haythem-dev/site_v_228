@@ -3,13 +3,12 @@ import { Divider } from "./ui/divider";
 
 const teamMembers = [
   {
-    name: "John Smith",
+    name: "Haythem Ben Abdelaziz",
     role: "CEO & Founder",
-    bio: "With over 15 years of experience in IT leadership, John brings vision and strategic direction to our team.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+    bio: "A seasoned IT professional with extensive experience in software engineering and team leadership.",
+    image: "/attached_assets/1737748242012.jpg",
     socials: [
-      { icon: <Linkedin className="h-5 w-5" />, url: "#" },
-      { icon: <Twitter className="h-5 w-5" />, url: "#" }
+      { icon: <Linkedin className="h-5 w-5" />, url: "https://www.linkedin.com/in/haythem-ben-abdelaziz-25a58b24" }
     ]
   },
   {
