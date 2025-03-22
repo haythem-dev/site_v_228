@@ -6,7 +6,7 @@ const teamMembers = [
     name: "Haythem Ben Abdelaziz",
     role: "CEO & Founder",
     bio: "A seasoned IT professional with extensive experience in software engineering and team leadership.",
-    image: "/attached_assets/1737748242012.jpg",
+    image: "../../../attached_assets/1737748242012.jpg",
     socials: [
       { icon: <Linkedin className="h-5 w-5" />, url: "https://www.linkedin.com/in/haythem-ben-abdelaziz-25a58b24" }
     ]
