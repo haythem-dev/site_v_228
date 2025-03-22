@@ -157,7 +157,7 @@ export default function FreelancePage() {
   return (
     <Layout>
       <PageNavigation links={navigationLinks} activeSection={activeSection} />
-      <div className="container py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-7xl">
         <section id="intro">
           <h2 className="text-3xl font-bold mb-6">Overview</h2>
           <div className="space-y-5 text-center">
