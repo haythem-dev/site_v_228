@@ -8,10 +8,10 @@ import { Linkedin, Twitter, Github, Mail, ArrowRight } from "lucide-react";
 export default function TeamPage() {
   const departmentLeads = [
     {
-      name: "David Wilson",
+      name: "Software Development Director",
       role: "Head of Software Development",
-      bio: "David has over 12 years of experience in software architecture and leads our development team with expertise in multiple programming languages and frameworks.",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
+      bio: "Leading our development initiatives with extensive experience in software architecture and multiple programming technologies.",
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60&blur=50",
       socials: [
         { icon: <Linkedin className="h-5 w-5" />, url: "#" },
         { icon: <Github className="h-5 w-5" />, url: "#" },
@@ -32,10 +32,10 @@ export default function TeamPage() {
       expertise: ["Threat Intelligence", "Security Auditing", "Compliance", "Incident Response"]
     },
     {
-      name: "Marcus Chen",
+      name: "Cloud Architecture Lead",
       role: "Cloud Solutions Architect",
-      bio: "Marcus specializes in designing scalable cloud infrastructure solutions and has successfully led numerous complex migration projects for enterprise clients.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
+      bio: "Specializing in cloud infrastructure design and enterprise-scale migration projects.",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60&blur=50",
       socials: [
         { icon: <Linkedin className="h-5 w-5" />, url: "#" },
         { icon: <Github className="h-5 w-5" />, url: "#" },
