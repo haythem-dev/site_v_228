@@ -9,85 +9,75 @@ export default function AnimatedBackground() {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x050b1f);
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: true,
+      alpha: true 
+    });
+
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
     containerRef.current.appendChild(renderer.domElement);
 
     const shapes = [];
     const geometryTypes = [
-      new THREE.IcosahedronGeometry(0.6),
-      new THREE.OctahedronGeometry(0.7),
-      new THREE.TetrahedronGeometry(0.8)
+      new THREE.IcosahedronGeometry(1),
+      new THREE.OctahedronGeometry(1),
+      new THREE.TetrahedronGeometry(1)
     ];
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 15; i++) {
       const geometry = geometryTypes[Math.floor(Math.random() * geometryTypes.length)];
-      const material = new THREE.MeshPhongMaterial({
-        color: 0x1a365d,
-        wireframe: true,
+      const material = new THREE.LineBasicMaterial({
+        color: 0x2a4365,
         transparent: true,
-        opacity: 0.2,
-        emissive: 0x0f2447,
-        emissiveIntensity: 0.3
+        opacity: 0.3,
       });
       
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.x = Math.random() * 20 - 10;
-      mesh.position.y = Math.random() * 20 - 10;
-      mesh.position.z = Math.random() * 10 - 5;
+      const wireframe = new THREE.LineSegments(
+        new THREE.WireframeGeometry(geometry),
+        material
+      );
       
-      shapes.push({
-        mesh,
-        rotationSpeed: Math.random() * 0.005,
-        floatSpeed: Math.random() * 0.001 + 0.0005
-      });
-      scene.add(mesh);
+      wireframe.position.x = Math.random() * 40 - 20;
+      wireframe.position.y = Math.random() * 40 - 20;
+      wireframe.position.z = Math.random() * 40 - 20;
+      
+      wireframe.rotation.x = Math.random() * Math.PI;
+      wireframe.rotation.y = Math.random() * Math.PI;
+      
+      shapes.push(wireframe);
+      scene.add(wireframe);
     }
 
-    const light = new THREE.DirectionalLight(0xffffff, 0.5);
-    light.position.set(0, 0, 1);
-    scene.add(light);
-    scene.add(new THREE.AmbientLight(0x101010));
-
-    camera.position.z = 8;
-
-    let mouseX = 0;
-    let mouseY = 0;
-    const handleMouseMove = (event: MouseEvent) => {
-      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener('mousemove', handleMouseMove);
+    camera.position.z = 15;
 
     const animate = () => {
       requestAnimationFrame(animate);
 
-      camera.position.x += (mouseX * 2 - camera.position.x) * 0.01;
-      camera.position.y += (mouseY * 2 - camera.position.y) * 0.01;
-      camera.lookAt(scene.position);
-
       shapes.forEach((shape) => {
-        shape.mesh.rotation.x += shape.rotationSpeed;
-        shape.mesh.rotation.y += shape.rotationSpeed * 1.2;
-        shape.mesh.position.y += Math.sin(Date.now() * shape.floatSpeed) * 0.005;
+        shape.rotation.x += 0.001;
+        shape.rotation.y += 0.001;
       });
 
       renderer.render(scene, camera);
     };
+
     animate();
 
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      renderer.setSize(width, height);
     };
+
     window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       containerRef.current?.removeChild(renderer.domElement);
     };
@@ -103,8 +93,8 @@ export default function AnimatedBackground() {
         width: '100%',
         height: '100%',
         zIndex: -1,
-        pointerEvents: 'none',
-        background: 'black'
+        background: 'radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%)',
+        pointerEvents: 'none'
       }}
     />
   );
