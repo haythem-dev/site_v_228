@@ -13,7 +13,7 @@ interface PageNavigationProps {
 
 export default function PageNavigation({ links, activeSection }: PageNavigationProps) {
   return (
-    <div className="sticky top-20 w-full bg-background/95 backdrop-blur z-40 border-b">
+    <div className="sticky top-20 w-full bg-background/95 backdrop-blur z-40 border-b px-4 sm:px-6 lg:px-8"> {/* Added padding */}
       <div className="container overflow-auto">
         <div className="flex items-center justify-start gap-4 py-2">
           {links.map((link) => (
