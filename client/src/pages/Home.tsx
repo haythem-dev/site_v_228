@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Layout } from "@/components/Layout";
+import Layout from "@/components/Layout";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { Divider } from "@/components/ui/divider";
