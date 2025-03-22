@@ -9,47 +9,51 @@ export default function AnimatedBackground() {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x111827); // Dark background
+    scene.background = new THREE.Color(0x0a0a0a);
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create geometric shapes
-    const geometries = [];
-    for (let i = 0; i < 50; i++) {
-      const geometry = new THREE.IcosahedronGeometry(Math.random() * 0.5 + 0.1);
+    const shapes = [];
+    const geometryTypes = [
+      new THREE.IcosahedronGeometry(0.7),
+      new THREE.OctahedronGeometry(0.7),
+      new THREE.TetrahedronGeometry(0.7)
+    ];
+
+    for (let i = 0; i < 30; i++) {
+      const geometry = geometryTypes[Math.floor(Math.random() * geometryTypes.length)];
       const material = new THREE.MeshPhongMaterial({
-        color: 0x6366f1,
+        color: 0x2563eb,
         wireframe: true,
         transparent: true,
-        opacity: 0.8,
-        emissive: 0x172554,
-        emissiveIntensity: 0.5
+        opacity: 0.3,
+        emissive: 0x1e40af,
+        emissiveIntensity: 0.2
       });
+      
       const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.x = Math.random() * 30 - 15;
+      mesh.position.y = Math.random() * 30 - 15;
+      mesh.position.z = Math.random() * 30 - 15;
       
-      mesh.position.x = Math.random() * 20 - 10;
-      mesh.position.y = Math.random() * 20 - 10;
-      mesh.position.z = Math.random() * 20 - 10;
-      
-      geometries.push({
+      shapes.push({
         mesh,
-        rotationSpeed: Math.random() * 0.02
+        rotationSpeed: Math.random() * 0.01,
+        floatSpeed: Math.random() * 0.002 + 0.001
       });
       scene.add(mesh);
     }
 
-    // Add lights
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(0, 0, 1);
     scene.add(light);
     scene.add(new THREE.AmbientLight(0x404040));
 
-    camera.position.z = 5;
+    camera.position.z = 10;
 
-    // Handle mouse movement for parallax
     let mouseX = 0;
     let mouseY = 0;
     const handleMouseMove = (event: MouseEvent) => {
@@ -58,26 +62,23 @@ export default function AnimatedBackground() {
     };
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Parallax effect
-      camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
-      camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+      camera.position.x += (mouseX * 2 - camera.position.x) * 0.02;
+      camera.position.y += (mouseY * 2 - camera.position.y) * 0.02;
       camera.lookAt(scene.position);
 
-      // Rotate geometries
-      geometries.forEach(({ mesh, rotationSpeed }) => {
-        mesh.rotation.x += rotationSpeed;
-        mesh.rotation.y += rotationSpeed;
+      shapes.forEach((shape) => {
+        shape.mesh.rotation.x += shape.rotationSpeed;
+        shape.mesh.rotation.y += shape.rotationSpeed;
+        shape.mesh.position.y += Math.sin(Date.now() * shape.floatSpeed) * 0.01;
       });
 
       renderer.render(scene, camera);
     };
     animate();
 
-    // Handle resize
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -93,15 +94,15 @@ export default function AnimatedBackground() {
   }, []);
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100%',
         height: '100%',
-        zIndex: 0,
+        zIndex: -1,
         pointerEvents: 'none'
       }}
     />
