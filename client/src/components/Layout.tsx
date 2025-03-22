@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-x-hidden bg-[#0f172a]">
       <AnimatedBackground />
       <Header />
       <main className="flex-grow">{children}</main>

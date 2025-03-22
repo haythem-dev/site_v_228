@@ -16,14 +16,14 @@ export default function AnimatedBackground() {
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x0f172a, 1);
     containerRef.current.appendChild(renderer.domElement);
 
     const shapes = [];
     const geometryTypes = [
-      new THREE.IcosahedronGeometry(1),
-      new THREE.OctahedronGeometry(1),
-      new THREE.TetrahedronGeometry(1)
+      new THREE.IcosahedronGeometry(0.8),
+      new THREE.OctahedronGeometry(0.8),
+      new THREE.TorusGeometry(0.6, 0.2, 16, 100)
     ];
 
     for (let i = 0; i < 15; i++) {
@@ -93,8 +93,9 @@ export default function AnimatedBackground() {
         width: '100%',
         height: '100%',
         zIndex: -1,
-        background: 'radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%)',
-        pointerEvents: 'none'
+        background: 'linear-gradient(to bottom right, #0f172a, #1e293b)',
+        pointerEvents: 'none',
+        opacity: 0.9
       }}
     />
   );
