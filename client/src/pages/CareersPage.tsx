@@ -336,7 +336,7 @@ export default function CareersPage() {
       </section>
 
       <section id="benefits" className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <h2 className="text-3xl font-bold text-center mb-12">Benefits & Perks</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefitsList.map((category, index) => (
@@ -356,7 +356,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <div className="container py-12 space-y-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 space-y-10">
         <div className="space-y-5 text-center">
           <h1 className="text-4xl font-bold tracking-tight">Join Our Team</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
