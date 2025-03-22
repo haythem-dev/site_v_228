@@ -39,7 +39,7 @@ export default function AboutSection() {
           <div className="md:w-1/2">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
             <p className="text-gray-500 mb-6">
-              At BetaPreZbenya, we're committed to providing innovative IT solutions that empower businesses to reach their full potential. Our mission is to bridge the gap between technology and business needs, creating customized solutions that drive growth and efficiency.
+              At Zbenya Systems, we're committed to providing innovative IT solutions that empower businesses to reach their full potential. Our mission is to bridge the gap between technology and business needs, creating customized solutions that drive growth and efficiency.
             </p>
             
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Values</h3>

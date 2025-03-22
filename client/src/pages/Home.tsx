@@ -11,7 +11,7 @@ export default function Home() {
       <section className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-foreground mb-6">Welcome to BetaPreZbenya</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-6">Welcome to Zbenya Systems</h1>
             <p className="text-lg text-muted-foreground mb-8">
               Next-Generation IT Solutions for Your Business
             </p>

@@ -169,7 +169,7 @@ export default function TeamPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Join Our Team</h2>
             <Divider className="bg-primary mx-auto mb-6" />
             <p className="text-gray-500 mb-8">
-              We're always looking for talented individuals who are passionate about technology and innovation. Explore opportunities to grow your career with BetaPreZbenya.
+              We're always looking for talented individuals who are passionate about technology and innovation. Explore opportunities to grow your career with Zbenya Systems.
             </p>
             <Button asChild>
               <Link href="/contact">

@@ -16,7 +16,7 @@ export default function AboutPage() {
     {
       year: "2008",
       title: "Company Founded",
-      description: "BetaPreZbenya was established with a vision to provide innovative IT solutions to businesses."
+      description: "Zbenya Systems was established with a vision to provide innovative IT solutions to businesses."
     },
     {
       year: "2012",
