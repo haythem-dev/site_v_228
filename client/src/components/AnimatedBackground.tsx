@@ -9,8 +9,9 @@ export default function AnimatedBackground() {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x111827); // Dark background
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
@@ -20,10 +21,12 @@ export default function AnimatedBackground() {
     for (let i = 0; i < 50; i++) {
       const geometry = new THREE.IcosahedronGeometry(Math.random() * 0.5 + 0.1);
       const material = new THREE.MeshPhongMaterial({
-        color: 0x4a90e2,
+        color: 0x6366f1,
         wireframe: true,
         transparent: true,
-        opacity: 0.5
+        opacity: 0.8,
+        emissive: 0x172554,
+        emissiveIntensity: 0.5
       });
       const mesh = new THREE.Mesh(geometry, material);
       
