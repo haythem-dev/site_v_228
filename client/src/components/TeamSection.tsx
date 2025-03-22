@@ -1,5 +1,6 @@
 import { Linkedin, Twitter, Github, Facebook, Instagram } from "lucide-react";
 import { Divider } from "./ui/divider";
+import { useResponsive } from './useResponsive'; // Custom hook (needs implementation)
 
 const teamMembers = [
   {
@@ -44,6 +45,8 @@ const teamMembers = [
 ];
 
 export default function TeamSection() {
+  const { isMobile } = useResponsive(); // Use custom hook
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,16 +57,17 @@ export default function TeamSection() {
             Meet our team of experienced professionals dedicated to delivering exceptional IT solutions.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 ${isMobile ? 'grid-cols-1' : ''}`}> {/* Apply mobile layout */}
           {teamMembers.map((member, index) => (
             <div key={index} className="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
-              <img 
-                src={member.image} 
-                alt={member.name} 
-                className="w-full h-64 object-cover object-center" 
-                width="300" 
-                height="300"
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-64 object-cover object-center"
+                width={isMobile ? 200 : 300} // Adjust image width for mobile
+                height={isMobile ? 200 : 300} // Adjust image height for mobile
+                loading="lazy" // Optimize image loading
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
@@ -73,9 +77,9 @@ export default function TeamSection() {
                 </p>
                 <div className="flex space-x-3">
                   {member.socials.map((social, idx) => (
-                    <a 
-                      key={idx} 
-                      href={social.url} 
+                    <a
+                      key={idx}
+                      href={social.url}
                       className="text-gray-500 hover:text-primary transition-all"
                       aria-label={`${member.name}'s social media`}
                     >
@@ -90,4 +94,21 @@ export default function TeamSection() {
       </div>
     </section>
   );
+}
+
+
+//Implementation of useResponsive hook
+function useResponsive() {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return { isMobile };
 }
