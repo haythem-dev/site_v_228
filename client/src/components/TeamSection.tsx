@@ -12,30 +12,30 @@ const teamMembers = [
     ]
   },
   {
-    name: "Sarah Johnson",
+    name: "Technical Director",
     role: "CTO",
-    bio: "A technical leader with expertise in emerging technologies and software architecture.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80&blur=20",
+    bio: "Technical leadership and strategic direction",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60&blur=50",
     socials: [
       { icon: <Linkedin className="h-5 w-5" />, url: "#" },
       { icon: <Twitter className="h-5 w-5" />, url: "#" }
     ]
   },
   {
-    name: "Michael Chen",
+    name: "Development Lead",
     role: "Lead Developer",
-    bio: "A skilled developer focused on creating innovative solutions for complex technical challenges.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80&blur=20",
+    bio: "Technical development and solution architecture",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60&blur=50",
     socials: [
       { icon: <Linkedin className="h-5 w-5" />, url: "#" },
       { icon: <Github className="h-5 w-5" />, url: "#" }
     ]
   },
   {
-    name: "Emily Rodriguez",
+    name: "Security Expert",
     role: "Security Specialist",
-    bio: "A security expert specializing in cybersecurity and threat prevention strategies.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80&blur=20",
+    bio: "Cybersecurity and system protection",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60&blur=50",
     socials: [
       { icon: <Linkedin className="h-5 w-5" />, url: "#" },
       { icon: <Twitter className="h-5 w-5" />, url: "#" }
