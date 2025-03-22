@@ -8,7 +8,7 @@ import { Linkedin, Twitter, Github, Mail, ArrowRight } from "lucide-react";
 export default function TeamPage() {
   const departmentLeads = [
     {
-      name: "Software Development Director",
+      name: "Development Director",
       role: "Head of Software Development",
       bio: "Leading our development initiatives with extensive experience in software architecture and multiple programming technologies.",
       image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60&blur=50",
@@ -20,9 +20,9 @@ export default function TeamPage() {
       expertise: ["Software Architecture", "System Design", "Team Leadership", "Agile Methodologies"]
     },
     {
-      name: "Elena Rodriguez",
+      name: "Security Operations Director",
       role: "Head of Security Operations",
-      bio: "Elena brings a decade of cybersecurity expertise from her background in financial services security operations, ensuring our clients' systems remain protected from emerging threats.",
+      bio: "Leading our security operations with extensive expertise in financial services security, ensuring robust system protection against emerging threats.",
       image: "https://images.unsplash.com/photo-1573496528579-b78db5629cc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
       socials: [
         { icon: <Linkedin className="h-5 w-5" />, url: "#" },
