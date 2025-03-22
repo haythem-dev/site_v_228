@@ -65,7 +65,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Journey</h2>
             <Divider className="bg-primary mx-auto mb-6" />
             <p className="text-gray-500 max-w-3xl mx-auto">
-              The story of BetaPreZbenya is one of innovation, growth, and commitment to excellence in the IT industry.
+              The story of Zbenya Systems is one of innovation, growth, and commitment to excellence in the IT industry.
             </p>
           </div>
           

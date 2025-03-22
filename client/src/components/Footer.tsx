@@ -140,7 +140,7 @@ export default function Footer() {
         
         <div className="border-t border-gray-700 mt-10 pt-6">
           <p className="text-center text-gray-300 text-sm">
-            © {currentYear} BetaPreZbenya. All rights reserved.
+            © {currentYear} Zbenya Systems. All rights reserved.
           </p>
         </div>
       </div>

@@ -175,7 +175,7 @@ export default function FreelancePage() {
               <CardHeader>
                 <CardTitle>Why Work With Us</CardTitle>
                 <CardDescription>
-                  Benefits of joining BetaPreZbenya's freelancer network
+                  Benefits of joining Zbenya Systems' freelancer network
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
