@@ -1,6 +1,6 @@
 import { Linkedin, Twitter, Github, Facebook, Instagram } from "lucide-react";
 import { Divider } from "./ui/divider";
-import { useResponsive } from './useResponsive'; // Custom hook (needs implementation)
+import { useResponsive } from '../hooks/use-responsive';
 
 const teamMembers = [
   {
@@ -97,18 +97,3 @@ export default function TeamSection() {
 }
 
 
-//Implementation of useResponsive hook
-function useResponsive() {
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
-    };
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return { isMobile };
-}
