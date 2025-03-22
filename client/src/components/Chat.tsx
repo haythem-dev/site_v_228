@@ -15,7 +15,8 @@ export default function Chat() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://${window.location.hostname}:5000/ws`);
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const ws = new WebSocket(`${protocol}//${window.location.hostname}/ws`);
     wsRef.current = ws;
 
     ws.onmessage = (event) => {
